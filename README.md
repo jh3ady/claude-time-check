@@ -30,14 +30,11 @@ and shared by every session.
 
 The plugin uses the Claude Code function hooks API, which is in early access.
 
-## Privacy and hooks
+## Prompts and hooks
 
-The plugin sends nothing outside your machine. Its settings, the time of your last acknowledgement and the end of a
-snooze live in the plugin's local store.
-
-The only prompt it submits is the one you typed: when a prompt is held, its text is kept in the session and submitted
-unchanged, as your own words, once you pick an option. Nothing is added to it, and no other conversation data is read
-or sent. Pasted images are not resent with a held prompt.
+The only prompt the plugin submits is the one you typed: when a prompt is held, its text is kept in the session and
+submitted unchanged, as your own words, once you pick an option. Nothing is added to it, and no other conversation data
+is read or sent. Pasted images are not resent with a held prompt.
 
 The full [privacy policy](PRIVACY.md) describes the data the plugin stores and how to delete it.
 
