@@ -9,6 +9,7 @@
   },
   "homepage": "https://github.com/jh3ady/claude-time-check",
   "repository": "https://github.com/jh3ady/claude-time-check",
+  "privacyPolicyUrl": "https://github.com/jh3ady/claude-time-check/blob/main/PRIVACY.md",
   "license": "MIT",
   "keywords": [
     "time",
