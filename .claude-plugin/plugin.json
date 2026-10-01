@@ -1,0 +1,20 @@
+{
+  "name": "time-check",
+  "displayName": "Time Check",
+  "version": "0.1.0",
+  "description": "Asks you to acknowledge the time before prompting inside time windows you configure per day.",
+  "author": {
+    "name": "Jean-Denis Vidot",
+    "url": "https://github.com/jh3ady"
+  },
+  "homepage": "https://github.com/jh3ady/claude-time-check",
+  "repository": "https://github.com/jh3ady/claude-time-check",
+  "license": "MIT",
+  "keywords": [
+    "time",
+    "reminder",
+    "wellbeing",
+    "mod"
+  ],
+  "types": "./types/index.d.ts"
+}
