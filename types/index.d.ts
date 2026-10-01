@@ -6,6 +6,6 @@ export type PendingPrompt = {
 
 declare module 'claude-code' {
   interface PluginState {
-    'time-check': { pending: PendingPrompt | null; isSessionMuted: boolean }
+    'time-check': { pending: PendingPrompt | null; isSessionMuted: boolean; feedback: string | null }
   }
 }

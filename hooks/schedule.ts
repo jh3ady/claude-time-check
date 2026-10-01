@@ -29,6 +29,9 @@ export function parseWindows(text: string): { windows: TimeWindow[]; invalid: st
   return { windows, invalid }
 }
 
+export const invalidEntries = (text: string): string[] =>
+  text.trim() === 'off' ? [] : parseWindows(text).invalid
+
 // Indexed like Date.getDay(): Sunday first.
 export const DAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] as const
 
@@ -92,3 +95,16 @@ export function windowEnd(window: TimeWindow, now: Date): Date {
   return end
 }
 
+// Monday first, as people read a week; the stored keys stay day names.
+const WEEK = [...DAYS.slice(1), DAYS[0]]
+
+export function describeSchedule(config: ScheduleConfig): string[] {
+  const fallback = config.default?.trim() || 'off'
+  const days = WEEK.map(day => {
+    const own = config[day]?.trim()
+
+    return `${day.padEnd(10)} ${own || `${fallback} (default)`}`
+  })
+
+  return [`${'default'.padEnd(10)} ${fallback}`, ...days]
+}

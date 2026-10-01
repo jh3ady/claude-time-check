@@ -2,7 +2,9 @@ import { describe, expect, test } from 'claude-code/testing'
 
 import {
   HOUR_MS,
+  describeSchedule,
   type TimeWindow,
+  invalidEntries,
   parseSchedule,
   parseWindows,
   warningWindow,
@@ -22,6 +24,18 @@ describe('parseWindows', () => {
   })
 })
 
+describe('invalidEntries', () => {
+  test('accepts windows, off and an empty field', () => {
+    expect(invalidEntries('22:00-06:00, 13:00-14:00')).toEqual([])
+    expect(invalidEntries('off')).toEqual([])
+    expect(invalidEntries('  ')).toEqual([])
+  })
+
+  test('lists what is not a window', () => {
+    expect(invalidEntries('22:00-06:00, 25:00-26:00, soon')).toEqual(['25:00-26:00', 'soon'])
+  })
+})
+
 describe('parseSchedule', () => {
   test('uses the default for empty days, the override otherwise, and nothing for off', () => {
     const { days } = parseSchedule({ default: '22:00-06:00', saturday: '00:00-09:00', sunday: 'off' })
@@ -33,6 +47,25 @@ describe('parseSchedule', () => {
 
   test('reports malformed entries with their field name', () => {
     expect(parseSchedule({ default: '22:00-06:00', monday: 'nope' }).invalid).toEqual(['monday: nope'])
+  })
+})
+
+describe('describeSchedule', () => {
+  test('lists the windows each day applies, marking the ones from the default', () => {
+    expect(describeSchedule({ default: '21:00-06:00', saturday: '00:00-09:00', sunday: 'off' })).toEqual([
+      'default    21:00-06:00',
+      'monday     21:00-06:00 (default)',
+      'tuesday    21:00-06:00 (default)',
+      'wednesday  21:00-06:00 (default)',
+      'thursday   21:00-06:00 (default)',
+      'friday     21:00-06:00 (default)',
+      'saturday   00:00-09:00',
+      'sunday     off',
+    ])
+  })
+
+  test('shows an empty default as off', () => {
+    expect(describeSchedule({})[0]).toBe('default    off')
   })
 })
 
