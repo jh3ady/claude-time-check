@@ -1,0 +1,17 @@
+{
+  "name": "claude-time-check",
+  "owner": {
+    "name": "Jean-Denis Vidot",
+    "url": "https://github.com/jh3ady"
+  },
+  "metadata": {
+    "description": "Time Check, a Claude Code plugin that asks you to acknowledge the time inside configured windows."
+  },
+  "plugins": [
+    {
+      "name": "time-check",
+      "source": "./",
+      "description": "Asks you to acknowledge the time before prompting inside time windows you configure per day."
+    }
+  ]
+}
